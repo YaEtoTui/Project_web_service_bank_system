@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB_NAME:bank_system}
+    username: ${POSTGRES_USERNAME:root}
+    password: ${POSTGRES_PASSWORD:123}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    properties:
+      hibernate:
+        default_schema: ${POSTGRES_SCHEMA:public}
+    hibernate:
+      ddl-auto: validate
+
+  liquibase:
+    default-schema: ${POSTGRES_SCHEMA:public}
+    change-log: classpath:db.changelog/2023-04-12-20-56.xml
+    enabled: true
+    contexts: bank
