@@ -27,7 +27,7 @@
                 <constraints nullable="false"/>
             </column>
 
-            <column name="ban" type="boolean">
+            <column name="enabled" type="boolean">
                 <constraints nullable="false"/>
             </column>
 

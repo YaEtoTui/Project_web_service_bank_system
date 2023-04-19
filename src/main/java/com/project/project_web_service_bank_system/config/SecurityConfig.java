@@ -44,6 +44,6 @@ public class SecurityConfig {
         auth.jdbcAuthentication()
                 .dataSource(dataSource)
                 .authoritiesByUsernameQuery("select USERNAME, ROLE from account where USERNAME=?")
-                .usersByUsernameQuery("select USERNAME, PASSWORD, BAN as enabled from account where USERNAME=?");
+                .usersByUsernameQuery("select USERNAME, PASSWORD, ENABLED from account where USERNAME=?");
     }
 }

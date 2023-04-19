@@ -25,14 +25,14 @@ public class Account {
 
     String role;
 
-    Boolean ban;
+    Boolean enabled;
 
     public static Account createAccountFrom(AccountContext context) {
         return Account.builder()
                 .username(context.getUsername())
                 .password(context.getPassword())
                 .role(context.getRole())
-                .ban(true)
+                .enabled(true)
                 .build();
     }
 }
