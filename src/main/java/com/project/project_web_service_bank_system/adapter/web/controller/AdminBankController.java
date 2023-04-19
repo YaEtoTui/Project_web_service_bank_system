@@ -3,7 +3,7 @@ package com.project.project_web_service_bank_system.adapter.web.controller;
 import com.project.project_web_service_bank_system.adapter.web.annotation.AdminAnnotation;
 import com.project.project_web_service_bank_system.domain.dto.request.CreateBankRequest;
 import com.project.project_web_service_bank_system.domain.dto.response.BankResponse;
-import com.project.project_web_service_bank_system.service.impl.BankServiceImpl;
+import com.project.project_web_service_bank_system.service.BankService;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.http.HttpStatus;
@@ -19,7 +19,7 @@ import static lombok.AccessLevel.PRIVATE;
 @RequiredArgsConstructor
 public class AdminBankController {
 
-    BankServiceImpl bankService;
+    BankService bankService;
 
     @PostMapping("/bank/new_bank")
     public ResponseEntity<BankResponse> addBank(@RequestBody CreateBankRequest bankRequest) {

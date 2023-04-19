@@ -1,0 +1,22 @@
+package com.project.project_web_service_bank_system.adapter.web.advice;
+
+import com.project.project_web_service_bank_system.common.exception.NotFoundException;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import static org.springframework.http.HttpStatus.NOT_FOUND;
+import static org.springframework.http.ResponseEntity.status;
+
+@RestControllerAdvice
+@RequiredArgsConstructor
+public class NotFoundAdvice {
+
+    @ExceptionHandler({NotFoundException.class})
+    public ResponseEntity<String> notFound(Exception e) {
+
+        return status(NOT_FOUND)
+                .body(e.getMessage());
+    }
+}

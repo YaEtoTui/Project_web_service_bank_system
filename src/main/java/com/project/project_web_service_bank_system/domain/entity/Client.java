@@ -20,14 +20,15 @@ public class Client {
     String name;
     Integer age;
 
+    @ManyToOne()
+    @JoinColumn(name = "bankId")
+    Bank bank;
+
     public static Client createClient(ClientContext context) {
         return Client.builder()
                 .name(context.getName())
                 .age(context.getAge())
+                .bank(context.getBank())
                 .build();
-    }
-
-    public int hashCode() {
-        return id.hashCode();
     }
 }

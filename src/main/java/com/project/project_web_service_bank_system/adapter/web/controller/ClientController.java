@@ -2,7 +2,7 @@ package com.project.project_web_service_bank_system.adapter.web.controller;
 
 import com.project.project_web_service_bank_system.adapter.web.annotation.ClientAnnotation;
 import com.project.project_web_service_bank_system.domain.dto.response.ClientResponse;
-import com.project.project_web_service_bank_system.service.impl.ClientServiceImpl;
+import com.project.project_web_service_bank_system.service.ClientService;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.http.HttpStatus;
@@ -17,7 +17,7 @@ import static lombok.AccessLevel.PRIVATE;
 @FieldDefaults(level = PRIVATE, makeFinal = true)
 @RequiredArgsConstructor
 public class ClientController {
-    ClientServiceImpl clientService;
+    ClientService clientService;
 
     @GetMapping("/bank/client/all")
     public ResponseEntity<List<ClientResponse>> readAll() {

@@ -6,4 +6,5 @@ import lombok.Value;
 public class CreateClientRequest {
     String name;
     Integer age;
+    Long bankId;
 }

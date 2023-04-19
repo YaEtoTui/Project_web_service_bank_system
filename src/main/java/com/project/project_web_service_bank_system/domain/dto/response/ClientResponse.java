@@ -7,4 +7,11 @@ public class ClientResponse {
     Long id;
     String name;
     Integer age;
+    BankInfo bank;
+
+    @Value
+    public static class BankInfo {
+        Long id;
+        String name;
+    }
 }
