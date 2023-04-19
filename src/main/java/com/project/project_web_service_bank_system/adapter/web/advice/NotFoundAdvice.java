@@ -15,7 +15,6 @@ public class NotFoundAdvice {
 
     @ExceptionHandler({NotFoundException.class})
     public ResponseEntity<String> notFound(Exception e) {
-
         return status(NOT_FOUND)
                 .body(e.getMessage());
     }

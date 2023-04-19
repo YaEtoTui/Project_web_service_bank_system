@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import javax.validation.Valid;
+
 import static lombok.AccessLevel.PRIVATE;
 
 @RequiredArgsConstructor
@@ -21,7 +23,7 @@ public class AccountController {
     AccountService accountService;
 
     @PostMapping("/register")
-    public ResponseEntity<AccountResponse> createProduct(@RequestBody CreateAccountRequest accountRequest) {
+    public ResponseEntity<AccountResponse> createProduct(@RequestBody @Valid CreateAccountRequest accountRequest) {
         return new ResponseEntity<>(accountService.createNewAccount(accountRequest), HttpStatus.OK);
     }
 }
