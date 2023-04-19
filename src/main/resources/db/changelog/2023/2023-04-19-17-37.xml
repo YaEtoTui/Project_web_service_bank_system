@@ -7,6 +7,8 @@
 
     <changeSet id="2023-04-19-17-37" author="SazhinEA" context="auth">
 
+        <createSequence sequenceName="hibernate_sequence" startValue="1" incrementBy="1"/>
+
         <createTable tableName="account">
 
             <column name="id" type="bigint">

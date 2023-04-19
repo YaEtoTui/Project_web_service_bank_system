@@ -23,10 +23,10 @@ public class SecurityConfig {
         http.cors().and().csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/public/api/register").permitAll()
-                .antMatchers("/public/api/**")
+                .antMatchers("/public/**")
                 //Лучше вписывать роль так: "ROLE_SUPPORT" и тд
                 .hasAnyRole("ADMIN", "USER")
-                .antMatchers("/admin/api/**")
+                .antMatchers("/admin/**")
                 .hasAnyRole("ADMIN")
                 .anyRequest().permitAll()
                 .and()
