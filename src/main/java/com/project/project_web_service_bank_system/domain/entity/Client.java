@@ -1,8 +1,9 @@
 package com.project.project_web_service_bank_system.domain.entity;
 
 import com.project.project_web_service_bank_system.domain.entity.context.ClientContext;
-import jakarta.persistence.*;
 import lombok.*;
+
+import javax.persistence.*;
 
 
 @Entity

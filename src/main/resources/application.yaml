@@ -14,6 +14,6 @@ spring:
 
   liquibase:
     default-schema: ${POSTGRES_SCHEMA:public}
-    change-log: classpath:db/changelog/2023-04-12-20-56.xml
+    change-log: classpath:db/changelog/db.changelog-master.xml
     enabled: true
-    contexts: bank
+    contexts: bank, auth

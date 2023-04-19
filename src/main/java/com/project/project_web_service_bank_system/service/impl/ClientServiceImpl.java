@@ -7,12 +7,12 @@ import com.project.project_web_service_bank_system.domain.entity.Client;
 import com.project.project_web_service_bank_system.domain.entity.context.ClientContext;
 import com.project.project_web_service_bank_system.service.ClientService;
 import com.project.project_web_service_bank_system.service.factory.ClientFactory;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 import static lombok.AccessLevel.PRIVATE;

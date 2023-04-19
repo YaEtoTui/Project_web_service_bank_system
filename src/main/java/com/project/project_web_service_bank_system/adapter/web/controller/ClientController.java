@@ -1,6 +1,6 @@
 package com.project.project_web_service_bank_system.adapter.web.controller;
 
-import com.project.project_web_service_bank_system.adapter.web.annotation.ClientAnnotation;
+import com.project.project_web_service_bank_system.adapter.web.annotation.PublicAnnotation;
 import com.project.project_web_service_bank_system.domain.dto.response.ClientResponse;
 import com.project.project_web_service_bank_system.service.ClientService;
 import lombok.RequiredArgsConstructor;
@@ -13,9 +13,9 @@ import java.util.List;
 
 import static lombok.AccessLevel.PRIVATE;
 
-@ClientAnnotation
 @FieldDefaults(level = PRIVATE, makeFinal = true)
 @RequiredArgsConstructor
+@PublicAnnotation
 public class ClientController {
     ClientService clientService;
 

@@ -1,9 +1,9 @@
 package com.project.project_web_service_bank_system.domain.entity;
 
 import com.project.project_web_service_bank_system.domain.entity.context.BankContext;
-import jakarta.persistence.*;
 import lombok.*;
 
+import javax.persistence.*;
 import java.util.LinkedList;
 import java.util.List;
 
