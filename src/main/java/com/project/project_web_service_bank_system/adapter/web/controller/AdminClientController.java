@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import javax.validation.Valid;
+
 import static lombok.AccessLevel.PRIVATE;
 
 @FieldDefaults(level = PRIVATE, makeFinal = true)
@@ -21,7 +23,7 @@ public class AdminClientController {
     ClientService clientService;
 
     @PostMapping("/bank/new_client")
-    public ResponseEntity<ClientResponse> addClient(@RequestBody CreateClientRequest clientRequest) {
+    public ResponseEntity<ClientResponse> addClient(@RequestBody @Valid CreateClientRequest clientRequest) {
         return new ResponseEntity<>(clientService.addNewClient(clientRequest), HttpStatus.OK);
     }
 

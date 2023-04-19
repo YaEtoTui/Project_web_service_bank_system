@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import javax.validation.Valid;
+
 import static lombok.AccessLevel.PRIVATE;
 
 
@@ -22,7 +24,7 @@ public class AdminBankController {
     BankService bankService;
 
     @PostMapping("/bank/new_bank")
-    public ResponseEntity<BankResponse> addBank(@RequestBody CreateBankRequest bankRequest) {
+    public ResponseEntity<BankResponse> addBank(@RequestBody @Valid CreateBankRequest bankRequest) {
         return new ResponseEntity<>(bankService.addNewBank(bankRequest), HttpStatus.OK);
     }
 }
