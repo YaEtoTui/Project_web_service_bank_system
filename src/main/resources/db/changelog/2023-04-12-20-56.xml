@@ -35,6 +35,12 @@
                 <constraints nullable="false"/>
             </column>
 
+            <column name="bank_id" type="bigint">
+                <constraints foreignKeyName="client_bank_fk"
+                             referencedTableName="bank"
+                             referencedColumnNames="id"/>
+            </column>
+
         </createTable>
 
     </changeSet>

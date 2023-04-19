@@ -21,7 +21,7 @@ public class Client {
     Integer age;
 
     @ManyToOne()
-    @JoinColumn(name = "bankId")
+    @JoinColumn(name = "bank_id")
     Bank bank;
 
     public static Client createClient(ClientContext context) {
