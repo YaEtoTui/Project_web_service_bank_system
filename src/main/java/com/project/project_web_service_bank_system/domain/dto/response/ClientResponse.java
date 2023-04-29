@@ -8,10 +8,18 @@ public class ClientResponse {
     String name;
     Integer age;
     BankInfo bank;
+    AccountInfo account;
 
     @Value
     public static class BankInfo {
         Long id;
         String name;
+    }
+
+    @Value
+    public static class AccountInfo {
+        Long id;
+        String username;
+        String role;
     }
 }

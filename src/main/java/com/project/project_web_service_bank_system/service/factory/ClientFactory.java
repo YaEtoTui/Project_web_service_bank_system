@@ -1,9 +1,13 @@
 package com.project.project_web_service_bank_system.service.factory;
 
+import com.project.project_web_service_bank_system.adapter.repository.AccountRepository;
 import com.project.project_web_service_bank_system.adapter.repository.BankRepository;
-import com.project.project_web_service_bank_system.common.exception.NotFoundException;
+import com.project.project_web_service_bank_system.common.exception.NotFoundAccountException;
+import com.project.project_web_service_bank_system.common.exception.NotFoundBankException;
 import com.project.project_web_service_bank_system.domain.dto.request.CreateClientRequest;
+import com.project.project_web_service_bank_system.domain.dto.response.AccountResponse;
 import com.project.project_web_service_bank_system.domain.dto.response.ClientResponse;
+import com.project.project_web_service_bank_system.domain.entity.Account;
 import com.project.project_web_service_bank_system.domain.entity.Bank;
 import com.project.project_web_service_bank_system.domain.entity.Client;
 import com.project.project_web_service_bank_system.domain.entity.context.ClientContext;
@@ -20,13 +24,23 @@ import java.util.stream.Collectors;
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public class ClientFactory {
     BankRepository bankRepository;
+    AccountRepository accountRepository;
 
     public ClientResponse createClientResponse(Client client) {
         return new ClientResponse(
                 client.getId(),
                 client.getName(),
                 client.getAge(),
-                createBankInfo(client.getBank())
+                createBankInfo(client.getBank()),
+                createAccountInfo(client.getAccount())
+        );
+    }
+
+    private ClientResponse.AccountInfo createAccountInfo(Account account) {
+        return new ClientResponse.AccountInfo(
+                account.getId(),
+                account.getUsername(),
+                account.getRole()
         );
     }
 
@@ -45,14 +59,22 @@ public class ClientFactory {
 
     public ClientContext createContext(CreateClientRequest requestClient) {
         Bank bank = bankRepository.findById(requestClient.getBankId())
-                .orElseThrow(() -> new NotFoundException(
-                        String.format("Not found bank with id %d", requestClient.getBankId())
+                .orElseThrow(() -> new NotFoundBankException(
+                        String.format("Not found bank with id: %d", requestClient.getBankId())
                         )
                 );
+
+        Account account = accountRepository.findById(requestClient.getAccountId())
+                .orElseThrow(() -> new NotFoundAccountException(
+                        String.format("Not found account with id: %d", requestClient.getAccountId())
+                        )
+                );
+
         return new ClientContext(
                 requestClient.getName(),
                 requestClient.getAge(),
-                bank
+                bank,
+                account
         );
     }
 }

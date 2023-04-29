@@ -1,6 +1,7 @@
 package com.project.project_web_service_bank_system.adapter.web.advice;
 
-import com.project.project_web_service_bank_system.common.exception.NotFoundException;
+import com.project.project_web_service_bank_system.common.exception.NotFoundAccountException;
+import com.project.project_web_service_bank_system.common.exception.NotFoundBankException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -13,7 +14,7 @@ import static org.springframework.http.ResponseEntity.status;
 @RequiredArgsConstructor
 public class NotFoundAdvice {
 
-    @ExceptionHandler({NotFoundException.class})
+    @ExceptionHandler({NotFoundBankException.class, NotFoundAccountException.class})
     public ResponseEntity<String> notFound(Exception e) {
         return status(NOT_FOUND)
                 .body(e.getMessage());

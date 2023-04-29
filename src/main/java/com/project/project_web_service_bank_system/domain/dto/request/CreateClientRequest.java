@@ -14,4 +14,5 @@ public class CreateClientRequest {
     @Min(value = 18, message = "Минимальный возраст 18 лет")
     Integer age;
     Long bankId;
+    Long accountId;
 }

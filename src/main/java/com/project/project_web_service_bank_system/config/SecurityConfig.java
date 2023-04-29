@@ -22,8 +22,7 @@ public class SecurityConfig {
     protected SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/public/api/register").permitAll()
-                .antMatchers("/public/**")
+                .antMatchers("/user/**")
                 //Лучше вписывать роль так: "ROLE_SUPPORT" и тд
                 .hasAnyRole("ADMIN", "USER")
                 .antMatchers("/admin/**")

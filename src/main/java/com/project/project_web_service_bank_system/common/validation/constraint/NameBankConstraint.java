@@ -1,7 +1,6 @@
 package com.project.project_web_service_bank_system.common.validation.constraint;
 
-
-import com.project.project_web_service_bank_system.common.validation.validator.RoleValidator;
+import com.project.project_web_service_bank_system.common.validation.validator.NameBankValidator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
@@ -11,10 +10,10 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Target({ElementType.FIELD})
-@Constraint(validatedBy = RoleValidator.class)
+@Constraint(validatedBy = NameBankValidator.class)
 @NotBlank
-public @interface RoleConstraint {
-    String message() default "wrong role written(ROLE_USER, ROLE_ADMIN)";
+public @interface NameBankConstraint {
+    String message() default "the name of the bank is already such a name";
 
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};

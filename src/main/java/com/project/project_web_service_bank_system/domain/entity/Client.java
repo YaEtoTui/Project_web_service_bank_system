@@ -25,11 +25,16 @@ public class Client {
     @JoinColumn(name = "bank_id")
     Bank bank;
 
+    @OneToOne
+    @JoinColumn(name = "account_id")
+    Account account;
+
     public static Client createClient(ClientContext context) {
         return Client.builder()
                 .name(context.getName())
                 .age(context.getAge())
                 .bank(context.getBank())
+                .account(context.getAccount())
                 .build();
     }
 }
