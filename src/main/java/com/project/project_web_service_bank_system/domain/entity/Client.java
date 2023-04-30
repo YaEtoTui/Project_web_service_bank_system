@@ -4,6 +4,8 @@ import com.project.project_web_service_bank_system.domain.entity.context.ClientC
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.LinkedList;
+import java.util.List;
 
 
 @Entity
@@ -29,12 +31,16 @@ public class Client {
     @JoinColumn(name = "account_id")
     Account account;
 
+    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
+    List<BankCard> cards = new LinkedList<>();
+
     public static Client createClient(ClientContext context) {
         return Client.builder()
                 .name(context.getName())
                 .age(context.getAge())
                 .bank(context.getBank())
                 .account(context.getAccount())
+                .cards(new LinkedList<>())
                 .build();
     }
 }

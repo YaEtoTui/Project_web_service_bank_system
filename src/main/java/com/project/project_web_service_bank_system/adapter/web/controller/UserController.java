@@ -1,17 +1,16 @@
 package com.project.project_web_service_bank_system.adapter.web.controller;
 
 import com.project.project_web_service_bank_system.adapter.web.annotation.UserAnnotation;
-import com.project.project_web_service_bank_system.domain.dto.response.BankResponse;
-import com.project.project_web_service_bank_system.domain.dto.response.ClientResponse;
-import com.project.project_web_service_bank_system.service.BankService;
-import com.project.project_web_service_bank_system.service.ClientService;
+import com.project.project_web_service_bank_system.domain.dto.request.CreateBankCardRequest;
+import com.project.project_web_service_bank_system.domain.dto.response.BankCardResponse;
+import com.project.project_web_service_bank_system.service.BankCardService;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
-import java.util.List;
 
 import static lombok.AccessLevel.PRIVATE;
 
@@ -19,17 +18,10 @@ import static lombok.AccessLevel.PRIVATE;
 @FieldDefaults(level = PRIVATE, makeFinal = true)
 @RequiredArgsConstructor
 public class UserController {
-    BankService bankService;
-    ClientService clientService;
+    BankCardService bankCardService;
 
-
-    @GetMapping("/bank/all")
-    public ResponseEntity<List<BankResponse>> readAllBanks() {
-        return new ResponseEntity<>(bankService.readAllBank(), HttpStatus.OK);
-    }
-
-    @GetMapping("/bank/client/all")
-    public ResponseEntity<List<ClientResponse>> readAllClients() {
-        return new ResponseEntity<>(clientService.readAllClients(), HttpStatus.OK);
+    @PostMapping("/bank/client/bankCard")
+    public ResponseEntity<BankCardResponse> addBankCard(@RequestBody CreateBankCardRequest cardRequest) {
+        return new ResponseEntity<>(bankCardService.createBankCard(cardRequest), HttpStatus.OK);
     }
 }

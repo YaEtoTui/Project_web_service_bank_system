@@ -5,10 +5,10 @@ import com.project.project_web_service_bank_system.adapter.repository.BankReposi
 import com.project.project_web_service_bank_system.common.exception.NotFoundAccountException;
 import com.project.project_web_service_bank_system.common.exception.NotFoundBankException;
 import com.project.project_web_service_bank_system.domain.dto.request.CreateClientRequest;
-import com.project.project_web_service_bank_system.domain.dto.response.AccountResponse;
 import com.project.project_web_service_bank_system.domain.dto.response.ClientResponse;
 import com.project.project_web_service_bank_system.domain.entity.Account;
 import com.project.project_web_service_bank_system.domain.entity.Bank;
+import com.project.project_web_service_bank_system.domain.entity.BankCard;
 import com.project.project_web_service_bank_system.domain.entity.Client;
 import com.project.project_web_service_bank_system.domain.entity.context.ClientContext;
 import lombok.AccessLevel;
@@ -17,6 +17,7 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 @Component
@@ -32,7 +33,10 @@ public class ClientFactory {
                 client.getName(),
                 client.getAge(),
                 createBankInfo(client.getBank()),
-                createAccountInfo(client.getAccount())
+                createAccountInfo(client.getAccount()),
+                client.getCards().stream()
+                        .map(this::createBankCardInfo)
+                        .collect(Collectors.toList())
         );
     }
 
@@ -48,6 +52,14 @@ public class ClientFactory {
         return new ClientResponse.BankInfo(
                 bank.getId(),
                 bank.getName()
+        );
+    }
+
+    private ClientResponse.BankCardInfo createBankCardInfo(BankCard bankCard) {
+        return new ClientResponse.BankCardInfo(
+                bankCard.getId(),
+                bankCard.getNumber(),
+                bankCard.getCVV()
         );
     }
 
