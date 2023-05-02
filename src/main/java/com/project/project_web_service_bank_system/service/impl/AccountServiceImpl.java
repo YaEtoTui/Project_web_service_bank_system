@@ -26,7 +26,7 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public AccountResponse createNewAccount(CreateAccountRequest accountRequest) {
         AccountContext context = accountFactory.createContext(accountRequest);
-        Account account = Account.createAccountFrom(context);
+        Account account = new Account(context);
         account = accountRepository.save(account);
         return accountFactory.createResponse(account);
     }

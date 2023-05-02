@@ -28,7 +28,7 @@ public class BankCardServiceImpl implements BankCardService {
     @Override
     public BankCardResponse createBankCard(CreateBankCardRequest bankCardRequest) {
         BankCardContext cardContext = bankCardFactory.createBankCardContext(bankCardRequest);
-        BankCard bankCard = BankCard.createBankCard(cardContext);
+        BankCard bankCard = new BankCard(cardContext);
         BankCard bankCardEntity = bankCardRepository.save(bankCard);
         return bankCardFactory.createBankCardResponse(bankCardEntity);
     }

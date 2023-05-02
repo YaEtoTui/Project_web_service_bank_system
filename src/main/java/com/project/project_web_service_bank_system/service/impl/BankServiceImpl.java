@@ -30,7 +30,7 @@ public class BankServiceImpl implements BankService {
     @Override
     public BankResponse addNewBank(CreateBankRequest createRequestBank) {
         BankContext bankContext = bankFactory.createContext(createRequestBank);
-        Bank bank = Bank.createBank(bankContext);
+        Bank bank = new Bank(bankContext);
         Bank bankEntity = bankRepository.save(bank);
         return bankFactory.createBankResponse(bankEntity);
     }

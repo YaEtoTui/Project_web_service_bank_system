@@ -31,7 +31,7 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public ClientResponse addNewClient(CreateClientRequest clientRequest) {
         ClientContext clientContext = clientFactory.createContext(clientRequest);
-        Client client = Client.createClient(clientContext);
+        Client client = new Client(clientContext);
         Client clientEntity = clientRepository.save(client);
         return clientFactory.createClientResponse(clientEntity);
     }
