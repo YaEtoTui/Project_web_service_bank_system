@@ -9,6 +9,9 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import static lombok.AccessLevel.PRIVATE;
 
 
@@ -31,5 +34,11 @@ public class AccountFactory {
                 passwordEncoder.encode(createAccountRequest.getPassword()),
                 createAccountRequest.getRole()
         );
+    }
+
+    public List<AccountResponse> createListAccountResponse(List<Account> accountList) {
+        return accountList.stream()
+                .map(this::createResponse)
+                .collect(Collectors.toList());
     }
 }

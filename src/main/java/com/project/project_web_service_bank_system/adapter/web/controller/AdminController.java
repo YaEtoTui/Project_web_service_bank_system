@@ -4,8 +4,10 @@ import com.project.project_web_service_bank_system.adapter.web.annotation.AdminA
 import com.project.project_web_service_bank_system.common.annotation.LogCountRequests;
 import com.project.project_web_service_bank_system.domain.dto.request.CreateBankRequest;
 import com.project.project_web_service_bank_system.domain.dto.request.CreateClientRequest;
+import com.project.project_web_service_bank_system.domain.dto.response.AccountResponse;
 import com.project.project_web_service_bank_system.domain.dto.response.BankResponse;
 import com.project.project_web_service_bank_system.domain.dto.response.ClientResponse;
+import com.project.project_web_service_bank_system.service.AccountService;
 import com.project.project_web_service_bank_system.service.BankService;
 import com.project.project_web_service_bank_system.service.ClientService;
 import lombok.RequiredArgsConstructor;
@@ -29,6 +31,7 @@ import static lombok.AccessLevel.PRIVATE;
 public class AdminController {
     BankService bankService;
     ClientService clientService;
+    AccountService accountService;
 
 
     @PostMapping("/bank/new_bank")
@@ -53,5 +56,11 @@ public class AdminController {
     @LogCountRequests
     public ResponseEntity<List<ClientResponse>> readAllClients() {
         return new ResponseEntity<>(clientService.readAllClients(), HttpStatus.OK);
+    }
+
+    @GetMapping("/bank/account/all")
+    @LogCountRequests
+    public ResponseEntity<List<AccountResponse>> readAllAccounts() {
+        return new ResponseEntity<>(accountService.readAllAccounts(), HttpStatus.OK);
     }
 }

@@ -1,9 +1,10 @@
 package com.project.project_web_service_bank_system.service.factory;
 
+import com.project.project_web_service_bank_system.adapter.repository.AccountRepository;
 import com.project.project_web_service_bank_system.adapter.repository.ClientRepository;
 import com.project.project_web_service_bank_system.common.exception.NotFoundClientEception;
-import com.project.project_web_service_bank_system.domain.dto.request.CreateBankCardRequest;
 import com.project.project_web_service_bank_system.domain.dto.response.BankCardResponse;
+import com.project.project_web_service_bank_system.domain.entity.Account;
 import com.project.project_web_service_bank_system.domain.entity.BankCard;
 import com.project.project_web_service_bank_system.domain.entity.Client;
 import com.project.project_web_service_bank_system.domain.entity.context.BankCardContext;
@@ -18,10 +19,12 @@ import static lombok.AccessLevel.PRIVATE;
 @FieldDefaults(makeFinal = true, level = PRIVATE)
 public class BankCardFactory {
     ClientRepository clientRepository;
-    public BankCardContext createBankCardContext(CreateBankCardRequest bankCardRequest) {
-        Client client = clientRepository.findById(bankCardRequest.getClientId())
+    AccountRepository accountRepository;
+
+    public BankCardContext createBankCardContext(Long clientId) {
+        Client client = clientRepository.findById(clientId)
                 .orElseThrow(() -> new NotFoundClientEception(
-                                String.format("Not found client with id: %d", bankCardRequest.getClientId())
+                                String.format("Not found client with id: %d", clientId)
                         )
                 );
         return new BankCardContext(
@@ -35,5 +38,11 @@ public class BankCardFactory {
                 bankCard.getNumber(),
                 bankCard.getCVV()
         );
+    }
+
+    public Long searchClientId(String nameAccount) {
+        Account account = accountRepository.findAccountByUsername(nameAccount);
+        Client client = clientRepository.findClientByAccountId(account.getId());
+        return client.getId();
     }
 }

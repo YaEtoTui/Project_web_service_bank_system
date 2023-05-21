@@ -8,7 +8,10 @@ import com.project.project_web_service_bank_system.domain.entity.context.ClientC
 import com.project.project_web_service_bank_system.service.ClientService;
 import com.project.project_web_service_bank_system.service.factory.ClientFactory;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import lombok.experimental.FieldDefaults;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 
@@ -40,5 +43,15 @@ public class ClientServiceImpl implements ClientService {
     public List<ClientResponse> readAllClients() {
         List<Client> clientList = clientRepository.findAll();
         return clientFactory.createListClientResponse(clientList);
+    }
+
+    @Async
+    @Scheduled(fixedRate = 60000)
+    @SneakyThrows
+    public void checkCommand() {
+        long startAt = System.currentTimeMillis();
+        readAllClients();
+        long time = System.currentTimeMillis() - startAt;
+        System.out.printf("Method called: 'readAllClients'. Time: '%s' ms \n", time);
     }
 }
