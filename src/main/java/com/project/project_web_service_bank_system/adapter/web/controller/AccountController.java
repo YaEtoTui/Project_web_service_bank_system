@@ -1,6 +1,7 @@
 package com.project.project_web_service_bank_system.adapter.web.controller;
 
 import com.project.project_web_service_bank_system.adapter.web.annotation.UserAnnotation;
+import com.project.project_web_service_bank_system.common.annotation.LogCountRequests;
 import com.project.project_web_service_bank_system.domain.dto.request.CreateAccountRequest;
 import com.project.project_web_service_bank_system.domain.dto.response.AccountResponse;
 import com.project.project_web_service_bank_system.service.AccountService;
@@ -27,6 +28,7 @@ public class AccountController {
     AccountService accountService;
 
     @PostMapping("/register")
+    @LogCountRequests
     public ResponseEntity<AccountResponse> registerAccount(@RequestBody @Valid CreateAccountRequest accountRequest) {
         return new ResponseEntity<>(accountService.createNewAccount(accountRequest), HttpStatus.OK);
     }

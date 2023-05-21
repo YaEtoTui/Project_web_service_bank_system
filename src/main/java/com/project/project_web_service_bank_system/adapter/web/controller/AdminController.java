@@ -1,6 +1,7 @@
 package com.project.project_web_service_bank_system.adapter.web.controller;
 
 import com.project.project_web_service_bank_system.adapter.web.annotation.AdminAnnotation;
+import com.project.project_web_service_bank_system.common.annotation.LogCountRequests;
 import com.project.project_web_service_bank_system.domain.dto.request.CreateBankRequest;
 import com.project.project_web_service_bank_system.domain.dto.request.CreateClientRequest;
 import com.project.project_web_service_bank_system.domain.dto.response.BankResponse;
@@ -31,21 +32,25 @@ public class AdminController {
 
 
     @PostMapping("/bank/new_bank")
+    @LogCountRequests
     public ResponseEntity<BankResponse> addBank(@RequestBody @Valid CreateBankRequest bankRequest) {
         return new ResponseEntity<>(bankService.addNewBank(bankRequest), HttpStatus.OK);
     }
 
     @PostMapping("/bank/new_client")
+    @LogCountRequests
     public ResponseEntity<ClientResponse> addClient(@RequestBody @Valid CreateClientRequest clientRequest) {
         return new ResponseEntity<>(clientService.addNewClient(clientRequest), HttpStatus.OK);
     }
 
     @GetMapping("/bank/all")
+    @LogCountRequests
     public ResponseEntity<List<BankResponse>> readAllBanks() {
         return new ResponseEntity<>(bankService.readAllBank(), HttpStatus.OK);
     }
 
     @GetMapping("/bank/client/all")
+    @LogCountRequests
     public ResponseEntity<List<ClientResponse>> readAllClients() {
         return new ResponseEntity<>(clientService.readAllClients(), HttpStatus.OK);
     }

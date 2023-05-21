@@ -1,6 +1,7 @@
 package com.project.project_web_service_bank_system.adapter.web.controller;
 
 import com.project.project_web_service_bank_system.adapter.web.annotation.UserAnnotation;
+import com.project.project_web_service_bank_system.common.annotation.LogCountRequests;
 import com.project.project_web_service_bank_system.domain.dto.request.CreateBankCardRequest;
 import com.project.project_web_service_bank_system.domain.dto.response.BankCardResponse;
 import com.project.project_web_service_bank_system.service.BankCardService;
@@ -21,6 +22,7 @@ public class UserController {
     BankCardService bankCardService;
 
     @PostMapping("/bank/client/bankCard")
+    @LogCountRequests
     public ResponseEntity<BankCardResponse> addBankCard(@RequestBody CreateBankCardRequest cardRequest) {
         return new ResponseEntity<>(bankCardService.createBankCard(cardRequest), HttpStatus.OK);
     }
