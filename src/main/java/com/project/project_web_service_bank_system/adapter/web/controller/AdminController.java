@@ -13,6 +13,8 @@ import com.project.project_web_service_bank_system.service.ClientService;
 import io.micrometer.core.annotation.Timed;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,6 +44,7 @@ public class AdminController {
     @PostMapping("/bank/new_bank")
     @LogCountRequests
     @Timed("add_bank")
+    @CacheEvict(value = "cache_read", allEntries = true)
     public ResponseEntity<BankResponse> addBank(@RequestBody @Valid CreateBankRequest bankRequest) {
         return new ResponseEntity<>(bankService.addNewBank(bankRequest), HttpStatus.OK);
     }
@@ -49,6 +52,7 @@ public class AdminController {
     @PostMapping("/bank/new_client")
     @LogCountRequests
     @Timed("add_client")
+    @CacheEvict(value = "cache_read", allEntries = true)
     public ResponseEntity<ClientResponse> addClient(@RequestBody @Valid CreateClientRequest clientRequest) {
         return new ResponseEntity<>(clientService.addNewClient(clientRequest), HttpStatus.OK);
     }
@@ -56,6 +60,7 @@ public class AdminController {
     @GetMapping("/bank/all")
     @LogCountRequests
     @Timed("read_all_banks")
+    @Cacheable("cache_read")
     public ResponseEntity<List<BankResponse>> readAllBanks() {
         return new ResponseEntity<>(bankService.readAllBank(), HttpStatus.OK);
     }

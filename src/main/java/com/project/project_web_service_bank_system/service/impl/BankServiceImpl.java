@@ -28,7 +28,6 @@ import static lombok.AccessLevel.PRIVATE;
 @Transactional
 @RequiredArgsConstructor
 @FieldDefaults(level = PRIVATE, makeFinal = true)
-@Builder
 public class BankServiceImpl implements BankService {
 
     MeterRegistry meterRegistry;
@@ -36,11 +35,11 @@ public class BankServiceImpl implements BankService {
     BankFactory bankFactory;
 
     @NonFinal
-    Counter counterCountScheduled;
+    Counter counterCountScheduledBank;
 
     @PostConstruct
     public void init() {
-        counterCountScheduled = Counter
+        counterCountScheduledBank = Counter
                 .builder("counter.scheduled.count.bank")
                 .register(meterRegistry);
     }
@@ -65,7 +64,7 @@ public class BankServiceImpl implements BankService {
     public void checkCommand() {
         long startAt = System.currentTimeMillis();
         readAllBank();
-        counterCountScheduled.increment();
+        counterCountScheduledBank.increment();
         long time = System.currentTimeMillis() - startAt;
         System.out.printf("Method called: 'readAllBank'. Time: '%s' ms \n", time);
     }
