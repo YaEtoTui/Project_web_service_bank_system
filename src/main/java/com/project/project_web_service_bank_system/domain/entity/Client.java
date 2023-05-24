@@ -8,6 +8,9 @@ import javax.persistence.*;
 import java.util.LinkedList;
 import java.util.List;
 
+/*
+Класс который получаем из бд, чтобы потом мы могли с ним работать
+ */
 
 @Entity
 @Getter

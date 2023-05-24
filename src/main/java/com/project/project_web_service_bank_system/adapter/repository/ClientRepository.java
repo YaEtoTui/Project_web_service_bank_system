@@ -6,6 +6,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/*
+Репозиторий, связочка с сервером и бд(Client), помогает сохранять информацию в бд и получать ее оттуда
+ */
 
 @Repository
 public interface ClientRepository extends JpaRepository<Client, Long> {

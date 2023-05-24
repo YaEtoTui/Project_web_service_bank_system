@@ -10,6 +10,10 @@ import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
+/*
+Позволяет обрабатывать events никак не касаясь основной бизнес логики. Также здесь генерируется id.
+ */
+
 @Getter
 @MappedSuperclass
 public class BaseDomainEntity {

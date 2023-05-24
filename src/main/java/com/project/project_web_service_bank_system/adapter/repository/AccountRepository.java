@@ -6,6 +6,10 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/*
+Репозиторий, связочка с сервером и бд(Account), помогает сохранять информацию в бд и получать ее оттуда
+ */
+
 @Repository
 public interface AccountRepository extends JpaRepository<Account, Long> {
     List<Account> findAllByUsername(String username);

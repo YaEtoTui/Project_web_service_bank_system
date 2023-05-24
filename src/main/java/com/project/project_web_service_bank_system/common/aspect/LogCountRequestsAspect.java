@@ -11,6 +11,10 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
 
+/*
+Аспект, логирует время выполнения метода на которого будет повешена аннотация, указанная в @Around
+ */
+
 @Aspect
 @Log4j2
 @Component

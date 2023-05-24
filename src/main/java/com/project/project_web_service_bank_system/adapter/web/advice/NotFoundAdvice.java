@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 import static org.springframework.http.ResponseEntity.status;
 
+/*
+Advice который ловит ошибки, если не найден банк или аккаунт
+ */
+
 @RestControllerAdvice
 @RequiredArgsConstructor
 public class NotFoundAdvice {

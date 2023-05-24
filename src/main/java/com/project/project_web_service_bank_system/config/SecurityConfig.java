@@ -12,6 +12,12 @@ import org.springframework.security.web.SecurityFilterChain;
 
 import javax.sql.DataSource;
 
+/*
+Добавляем security, чтобы запросы могли писать только ограниченное количество людей. Здесь прописываем у кого какая
+роль, какие запросы ограничиваем, то есть авторизация. Для пароля мы используем decoder, так как это личная информация.
+И также сравнение username и password из бд.
+ */
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {

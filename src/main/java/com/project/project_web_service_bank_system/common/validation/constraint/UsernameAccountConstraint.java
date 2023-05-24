@@ -6,6 +6,10 @@ import javax.validation.*;
 import javax.validation.constraints.NotBlank;
 import java.lang.annotation.*;
 
+/*
+Аннотация нужна чтобы сделать валидацию поля username класса Account
+ */
+
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Target({ElementType.FIELD})

@@ -5,6 +5,10 @@ import com.project.project_web_service_bank_system.common.validation.constraint.
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
+/*
+Валидатор, в котором прописываем условия валидации поля role класса Account
+ */
+
 public class RoleAccountValidator implements ConstraintValidator<RoleAccountConstraint, String> {
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {

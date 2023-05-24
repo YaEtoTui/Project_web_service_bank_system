@@ -1,10 +1,8 @@
 package com.project.project_web_service_bank_system.adapter.web.controller;
 
-import com.project.project_web_service_bank_system.adapter.web.annotation.UserAnnotation;
 import com.project.project_web_service_bank_system.common.annotation.LogCountRequests;
 import com.project.project_web_service_bank_system.domain.dto.request.CreateAccountRequest;
 import com.project.project_web_service_bank_system.domain.dto.response.AccountResponse;
-import com.project.project_web_service_bank_system.domain.dto.response.BankResponse;
 import com.project.project_web_service_bank_system.service.AccountService;
 import io.micrometer.core.annotation.Timed;
 import lombok.RequiredArgsConstructor;
@@ -15,10 +13,12 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-import java.util.List;
-
 import static lombok.AccessLevel.PRIVATE;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+
+/*
+Контроллер, который получает запрос для регистрации аккаунта
+ */
 
 @RequiredArgsConstructor
 @FieldDefaults(level = PRIVATE, makeFinal = true)

@@ -9,6 +9,10 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.util.List;
 
+/*
+Валидатор, в котором прописываем условия валидации поля username класса Account
+ */
+
 public class UsernameAccountValidator implements ConstraintValidator<UsernameAccountConstraint, String> {
     @Autowired
     AccountRepository accountRepository;

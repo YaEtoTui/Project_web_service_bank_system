@@ -6,6 +6,10 @@ import lombok.*;
 
 import javax.persistence.*;
 
+/*
+Класс который получаем из бд, чтобы потом мы могли с ним работать
+ */
+
 @Entity
 @Getter
 @Setter

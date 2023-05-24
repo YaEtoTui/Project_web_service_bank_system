@@ -6,6 +6,10 @@ import lombok.Value;
 
 import javax.validation.constraints.NotBlank;
 
+/*
+Класс запроса на создание Account. Нужен когда, клиент хочет вести какие-то значения для создания account
+ */
+
 @Value
 public class CreateAccountRequest {
     @UsernameAccountConstraint

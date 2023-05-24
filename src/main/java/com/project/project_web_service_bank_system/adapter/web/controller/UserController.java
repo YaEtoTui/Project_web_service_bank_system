@@ -16,6 +16,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import static lombok.AccessLevel.PRIVATE;
 
+/*
+Контроллер, который получает запрос с аккаунтов с ролью user или admin(но предпочительней user).
+Например, создать карту себе(клиенту).
+ */
+
 @UserAnnotation
 @FieldDefaults(level = PRIVATE, makeFinal = true)
 @RequiredArgsConstructor

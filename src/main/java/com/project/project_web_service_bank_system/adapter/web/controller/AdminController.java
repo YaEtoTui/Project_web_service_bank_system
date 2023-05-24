@@ -25,6 +25,10 @@ import java.util.List;
 
 import static lombok.AccessLevel.PRIVATE;
 
+/*
+Контроллер, который пишет аккаунт с ролью 'ROLE_ADMIN'. Например, Добавить банк, клиента
+или посмотреть список банков, клиентов, аккаунтов
+ */
 
 @FieldDefaults(level = PRIVATE, makeFinal = true)
 @AdminAnnotation

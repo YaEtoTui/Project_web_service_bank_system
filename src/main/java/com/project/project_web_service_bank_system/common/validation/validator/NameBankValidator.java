@@ -9,6 +9,10 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.util.List;
 
+/*
+Валидатор, в котором прописываем условия валидации поля name класса Bank
+ */
+
 public class NameBankValidator implements ConstraintValidator<NameBankConstraint, String> {
     @Autowired
     BankRepository bankRepository;

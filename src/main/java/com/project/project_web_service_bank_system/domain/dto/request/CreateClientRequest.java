@@ -6,6 +6,10 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+/*
+Класс запроса на создание Client
+ */
+
 @Value
 public class CreateClientRequest {
     @NotBlank

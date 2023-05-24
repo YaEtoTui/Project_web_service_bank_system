@@ -6,6 +6,10 @@ import org.springframework.context.annotation.*;
 
 import static com.fasterxml.jackson.databind.cfg.ConstructorDetector.USE_PROPERTIES_BASED;
 
+/*
+Чтобы нормально выводился Json
+ */
+
 @Configuration
 public class JacksonConfig {
 

@@ -4,6 +4,10 @@ import lombok.Value;
 
 import java.util.List;
 
+/*
+Класс ответа, то есть информацию, которую мы выводим на запрос. Также здесь для списка банков будет выводится доп информация
+ */
+
 @Value
 public class ClientResponse {
     Long id;
