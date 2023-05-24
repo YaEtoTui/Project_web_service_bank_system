@@ -1,6 +1,7 @@
 package com.project.project_web_service_bank_system.adapter.listener;
 
 import com.project.project_web_service_bank_system.domain.event.NewBankCardCreated;
+import com.project.project_web_service_bank_system.service.RabbitService;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.experimental.FieldDefaults;
@@ -16,11 +17,15 @@ import static lombok.AccessLevel.PRIVATE;
 @RequiredArgsConstructor
 @FieldDefaults(makeFinal = true, level = PRIVATE)
 public class NewBankCardCreatedAsyncListener {
+    RabbitService rabbitService;
+
     @EventListener
     @SneakyThrows
     @Async
     public void handleNewBankCardCreatedEventAsync(NewBankCardCreated event) {
-        System.out.printf("New card with id '%s', number '%s', CVV '%s' registered. Time: %s\n",
+        String message = String.format("New card with id '%s', number '%s', CVV '%s' registered. Time: %s\n",
                 event.getId(), event.getNumber(), event.getCVV(), Instant.now());
+        rabbitService.sendMessage(message);
+        System.out.println(message);
     }
 }
