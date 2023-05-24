@@ -4,6 +4,7 @@ import com.project.project_web_service_bank_system.adapter.web.annotation.UserAn
 import com.project.project_web_service_bank_system.common.annotation.LogCountRequests;
 import com.project.project_web_service_bank_system.domain.dto.response.BankCardResponse;
 import com.project.project_web_service_bank_system.service.BankCardService;
+import io.micrometer.core.annotation.Timed;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,7 @@ public class UserController {
 
     @PostMapping("/bank/client/bankCard")
     @LogCountRequests
+    @Timed("add_bank_card")
     public ResponseEntity<BankCardResponse> addBankCard() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return new ResponseEntity<>(bankCardService.createBankCard(authentication.getName()), HttpStatus.OK);

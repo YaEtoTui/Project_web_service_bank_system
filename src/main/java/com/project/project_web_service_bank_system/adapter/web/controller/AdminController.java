@@ -10,6 +10,7 @@ import com.project.project_web_service_bank_system.domain.dto.response.ClientRes
 import com.project.project_web_service_bank_system.service.AccountService;
 import com.project.project_web_service_bank_system.service.BankService;
 import com.project.project_web_service_bank_system.service.ClientService;
+import io.micrometer.core.annotation.Timed;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.http.HttpStatus;
@@ -36,30 +37,35 @@ public class AdminController {
 
     @PostMapping("/bank/new_bank")
     @LogCountRequests
+    @Timed("add_bank")
     public ResponseEntity<BankResponse> addBank(@RequestBody @Valid CreateBankRequest bankRequest) {
         return new ResponseEntity<>(bankService.addNewBank(bankRequest), HttpStatus.OK);
     }
 
     @PostMapping("/bank/new_client")
     @LogCountRequests
+    @Timed("add_client")
     public ResponseEntity<ClientResponse> addClient(@RequestBody @Valid CreateClientRequest clientRequest) {
         return new ResponseEntity<>(clientService.addNewClient(clientRequest), HttpStatus.OK);
     }
 
     @GetMapping("/bank/all")
     @LogCountRequests
+    @Timed("read_all_banks")
     public ResponseEntity<List<BankResponse>> readAllBanks() {
         return new ResponseEntity<>(bankService.readAllBank(), HttpStatus.OK);
     }
 
     @GetMapping("/bank/client/all")
     @LogCountRequests
+    @Timed("read_all_clients")
     public ResponseEntity<List<ClientResponse>> readAllClients() {
         return new ResponseEntity<>(clientService.readAllClients(), HttpStatus.OK);
     }
 
     @GetMapping("/bank/account/all")
     @LogCountRequests
+    @Timed("read_all_accounts")
     public ResponseEntity<List<AccountResponse>> readAllAccounts() {
         return new ResponseEntity<>(accountService.readAllAccounts(), HttpStatus.OK);
     }

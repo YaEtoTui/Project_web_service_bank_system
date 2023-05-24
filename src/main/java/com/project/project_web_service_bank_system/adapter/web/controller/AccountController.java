@@ -6,6 +6,7 @@ import com.project.project_web_service_bank_system.domain.dto.request.CreateAcco
 import com.project.project_web_service_bank_system.domain.dto.response.AccountResponse;
 import com.project.project_web_service_bank_system.domain.dto.response.BankResponse;
 import com.project.project_web_service_bank_system.service.AccountService;
+import io.micrometer.core.annotation.Timed;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.http.HttpStatus;
@@ -29,6 +30,7 @@ public class AccountController {
 
     @PostMapping("/register")
     @LogCountRequests
+    @Timed(value = "register_account")
     public ResponseEntity<AccountResponse> registerAccount(@RequestBody @Valid CreateAccountRequest accountRequest) {
         return new ResponseEntity<>(accountService.createNewAccount(accountRequest), HttpStatus.OK);
     }

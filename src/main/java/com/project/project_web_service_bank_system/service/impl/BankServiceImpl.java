@@ -7,14 +7,18 @@ import com.project.project_web_service_bank_system.domain.entity.Bank;
 import com.project.project_web_service_bank_system.domain.entity.context.BankContext;
 import com.project.project_web_service_bank_system.service.BankService;
 import com.project.project_web_service_bank_system.service.factory.BankFactory;
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.MeterRegistry;
 import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.experimental.FieldDefaults;
+import lombok.experimental.NonFinal;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -27,8 +31,19 @@ import static lombok.AccessLevel.PRIVATE;
 @Builder
 public class BankServiceImpl implements BankService {
 
+    MeterRegistry meterRegistry;
     BankRepository bankRepository;
     BankFactory bankFactory;
+
+    @NonFinal
+    Counter counterCountScheduled;
+
+    @PostConstruct
+    public void init() {
+        counterCountScheduled = Counter
+                .builder("counter.scheduled.count.bank")
+                .register(meterRegistry);
+    }
 
     @Override
     public BankResponse addNewBank(CreateBankRequest createRequestBank) {
@@ -45,11 +60,12 @@ public class BankServiceImpl implements BankService {
     }
 
     @Async
-    @Scheduled(fixedRate = 60000)
+    @Scheduled(fixedRate = 60000, initialDelay = 100000)
     @SneakyThrows
     public void checkCommand() {
         long startAt = System.currentTimeMillis();
         readAllBank();
+        counterCountScheduled.increment();
         long time = System.currentTimeMillis() - startAt;
         System.out.printf("Method called: 'readAllBank'. Time: '%s' ms \n", time);
     }

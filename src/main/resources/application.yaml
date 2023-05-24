@@ -17,3 +17,13 @@ spring:
     change-log: classpath:db/changelog/db.changelog-master.xml
     enabled: true
     contexts: bank
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, prometheus
+  metrics:
+    export:
+      prometheus:
+        enabled: true
